@@ -1,0 +1,26 @@
+{
+  "name": "gatsby-kyero-feed",
+  "version": "1.0.0",
+  "description": "Plugin for creating a kyero valid xml feed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"No build script setup\""
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@hapi/joi": "^15.1.1",
+    "common-tags": "^1.8.0",
+    "fs-extra": "^8.1.0",
+    "gatsby-plugin-utils": "^0.5.0-next.0",
+    "lodash.merge": "^4.6.2",
+    "mime-types": "2.1.13",
+    "xml": "1.0.1"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "author": "Stijn Swaanen <stijn@socialkick.be>",
+  "license": "0BSD"
+}
