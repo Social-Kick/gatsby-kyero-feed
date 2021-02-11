@@ -40,12 +40,9 @@ function generateXML (data) {
     });
 
     return {
-        xml: [
-            { _attr: _attr },
-            { root: [
-                { kyero: [{ feed_version: '3' }]},
-                ...props
-            ]}
+        root: [
+          { kyero: [{ feed_version: '3' }]},
+          ...props
         ]
     }
 }
