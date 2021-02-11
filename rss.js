@@ -32,8 +32,14 @@ function generateXML (data) {
             { baths: property.baths },
             { pool: property.pool },
             { url: [{ nl: property.url }] },
-            { video_url: property.video_url },
-            { virtual_tour_url: property.virtual_tour_url },
+            { price_freq: property.price_freq },
+            { part_ownership: property.part_ownership },
+            { leasehold: property.leasehold },
+            { new_build: property.new_build },
+            { surface_area: [{ built: '0' }, { plot: '0' }] },
+            { energy_rating: [{ consumption: 'X' }, { emissions: 'X' }] },
+            { catastral: '00000000000000000000' },
+            { desc: property.desc },
             { images: mappedPropertyImages }
         ];
         props.push({ property: mappedProperty });
@@ -75,9 +81,10 @@ function RSS (options, properties) {
             baths:            options.baths || '',
             pool:             options.pool || '',
             url:              options.url || '',
-            video_url:        options.video_url || '',
-            virtual_tour_url: options.virtual_tour_url || '',
-            images:           options.images || []
+            images:           options.images || [],
+            part_ownership:   '0',
+            leasehold:        '0',
+            desc:             ''             
         };
 
         this.properties.push(property);
@@ -88,6 +95,7 @@ function RSS (options, properties) {
         return '<?xml version="1.0" encoding="UTF-8"?>' +
             xml(generateXML(this), indent);
     };
+
 }
 
 module.exports = RSS;
