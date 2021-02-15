@@ -16,6 +16,17 @@ function generateXML (data) {
         const mappedPropertyImages = property.images.map((image, index) => ({
             image: [{ _attr: { id: index }}, { url: `https:${image.file.url}` }]
         }));
+        
+        const mappedPropertyDescription = property.desc.content !== '' && property.desc.content.length > 0 ? 
+        property.desc.content
+            .map(ci => ci.content
+                .map(cic => cic.value)
+                .join('&#13;')
+            )
+            .join('&#13;')
+            .replace('\n/g', '&#13;') : 
+        property.desc.content;
+        
         const mappedProperty = [
             { id: property.id },
             { date: property.date },
@@ -39,7 +50,7 @@ function generateXML (data) {
             { surface_area: [{ built: '0' }, { plot: '0' }] },
             { energy_rating: [{ consumption: 'X' }, { emissions: 'X' }] },
             { catastral: '00000000000000000000' },
-            { desc: property.desc },
+            { desc: [{ nl: mappedPropertyDescription }] },
             { images: mappedPropertyImages }
         ];
         props.push({ property: mappedProperty });
@@ -84,7 +95,7 @@ function RSS (options, properties) {
             images:           options.images || [],
             part_ownership:   '0',
             leasehold:        '0',
-            desc:             ''             
+            desc:             options.desc || ''             
         };
 
         this.properties.push(property);
